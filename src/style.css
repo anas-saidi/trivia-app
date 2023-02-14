@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Karla";
+  height: 100vh;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#root {
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+}
+.quiz {
+  width: 90%;
+  color: #293264;
+  padding: 1.5rem 0;
+  border-bottom: 3px solid #dbdef0;
+  margin-bottom: 50px;
+}
+.question--text {
+  font-size: 1.7em;
+  margin-bottom: 1.5em;
+}
+.answers {
+  max-width: 100%;
+  justify-content: flex-start;
+}
+.answer {
+  margin-right: 1rem;
+  border: 1px solid #293264;
+  border-radius: 1em;
+  font-size: 1.2em;
+  font-weight: 700;
+  padding: 0.8em 1.5em;
+  cursor: pointer;
+}
+.container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+.hero {
+  color: #293264;
+  width: 100%;
+  text-align: center;
+  padding: 2em;
+}
+.btn {
+  background-color: #4d5b9e;
+  color: #fff;
+  border-radius: 1em;
+  border: none;
+  font-size: 1.3em;
+  font-family: "Karla";
+  padding: 1em 1.2em;
+  cursor: pointer;
+}
+.hero--text {
+  font-size: 1.2em;
+  margin-bottom: 50px;
+}
+.selected {
+  background-color: #d6dbf5;
+  border: none;
+}

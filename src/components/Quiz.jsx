@@ -11,12 +11,14 @@ const Quiz = (props) => {
       array[j] = temp;
     }
   };
+  // Define state for options
   const [options, setOptions] = React.useState(() => {
     shuffleArray(props.options);
     return props.options.map((option, index) => {
       return { id: index, value: option, selected: false };
     });
   });
+
   const selectAnswer = (id) => {
     setOptions((prevOptions) =>
       prevOptions.map((option) => {
@@ -30,12 +32,24 @@ const Quiz = (props) => {
   };
 
   const questionOptions = options.map((option) => {
+    let styles = props.gamestate !== "started" ? { opacity: "0.5" } : {};
+    if (props.gamestate !== "started" && props.gamestate !== "not started") {
+      if (option.value === props.answer) {
+        styles = { backgroundColor: "#94D7A2", border: "none", opacity: "1" };
+      } else if (option.value !== props.answer && option.selected) {
+        styles = { backgroundColor: "#F8BCBC", border: "none", opacity: "0.5" };
+      }
+    }
+
     return (
       <li
         className={`answer ${option.selected ? "selected" : ""}`}
         onClick={() => {
-          selectAnswer(option.id);
+          if (props.gamestate === "started") {
+            selectAnswer(option.id);
+          }
         }}
+        style={styles}
       >
         {option.value}
       </li>

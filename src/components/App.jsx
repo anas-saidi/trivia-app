@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import Quiz from "./Quiz";
 import React from "react";
 import data from "../questions.json";
+import ReactLoading from "react-loading";
 
 const App = () => {
   const [gameState, setGameState] = React.useState({
@@ -10,6 +11,7 @@ const App = () => {
     score: 0,
   });
   const [questions, setQuestions] = React.useState([]);
+  console.log(gameState.score);
   // get questions from API ( use setData inside of the async function )
   React.useEffect(() => {
     const getQuestion = async () => {
@@ -35,6 +37,13 @@ const App = () => {
   };
   // check all answers at the end of the game
   const checkAnswer = () => {
+    questions.forEach((question) => {
+      if (question.answer === question.correctAnswer) {
+        setGameState((prevGame) => {
+          return { ...prevGame, score: prevGame.score + 1 };
+        });
+      }
+    });
     const game = questions.every((question) => {
       return (
         question.answer !== "" && question.answer === question.correctAnswer
@@ -42,7 +51,9 @@ const App = () => {
     })
       ? "won"
       : "lost";
-    setGameState({ ...gameState, state: game });
+    setGameState((prevGame) => {
+      return { ...prevGame, state: game };
+    });
   };
 
   // map data to JSX elements
@@ -85,6 +96,7 @@ const App = () => {
       mainElement = (
         <div className='question--section'>
           {questionElements}
+          <h1 className='result'>{`Your current score is ${gameState.score}/${questions.length}`}</h1>
           <button className='btn btn--check' onClick={startQuiz}>
             New Game
           </button>

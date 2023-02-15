@@ -15,6 +15,16 @@ ul {
 .flex {
   display: flex;
 }
+.result {
+  padding: 1.5em;
+  color: #293264;
+  margin: 30px;
+}
+.question--section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .winning-msg {
   font-size: 3.5em;
   color: #293264;
@@ -24,7 +34,7 @@ ul {
   color: #293264;
   padding: 1.5rem 0;
   border-bottom: 3px solid #dbdef0;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 .question--text {
   font-size: 1.7em;
@@ -56,6 +66,9 @@ ul {
   width: 100%;
   text-align: center;
   padding: 2em;
+}
+.btn--check {
+  margin: 50px 0;
 }
 .btn {
   background-color: #4d5b9e;

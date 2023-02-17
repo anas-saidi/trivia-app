@@ -6,6 +6,7 @@ import data from "../questions.json";
 import ReactLoading from "react-loading";
 
 const App = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
   const [gameState, setGameState] = React.useState({
     state: "not started",
     score: 0,
@@ -22,6 +23,7 @@ const App = () => {
           return { ...question, answer: "" };
         })
       );
+      setIsLoading(false);
     };
     if (gameState.state === "started") {
       getQuestion();
@@ -73,6 +75,7 @@ const App = () => {
   // start the game
   const startQuiz = () => {
     setGameState({ state: "started", score: 0 });
+    setIsLoading(true);
   };
   let mainElement;
   switch (gameState.state) {
@@ -82,6 +85,11 @@ const App = () => {
     case "started":
       mainElement = (
         <div className='question--section'>
+          {isLoading && (
+            <div className='loading'>
+              <ReactLoading type={"spin"} color={"blue"} />
+            </div>
+          )}
           {questionElements}
           <button className='btn btn--check' onClick={checkAnswer}>
             Check answers
@@ -90,7 +98,15 @@ const App = () => {
       );
       break;
     case "won":
-      mainElement = <h1 className='winning-msg'>You have won 🎊🎉 </h1>;
+      mainElement = (
+        <div className='question--section'>
+          {questionElements}
+          <h1 className='result'>{`Your current score is ${gameState.score}/${questions.length}`}</h1>
+          <button className='btn btn--check' onClick={startQuiz}>
+            New Game
+          </button>
+        </div>
+      );
       break;
     case "lost":
       mainElement = (

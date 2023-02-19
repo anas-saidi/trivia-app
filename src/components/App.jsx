@@ -12,7 +12,7 @@ const App = () => {
     score: 0,
   });
   const [questions, setQuestions] = React.useState([]);
-  console.log(gameState.score);
+ 
   // get questions from API ( use setData inside of the async function )
   React.useEffect(() => {
     const getQuestion = async () => {
